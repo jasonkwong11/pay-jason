@@ -22,3 +22,5 @@
 
 .byebug_history
 .env
+/config/secrets.yml
+config/secrets.yml
