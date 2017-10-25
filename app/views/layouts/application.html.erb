@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pay Jason</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <style>
+      body {
+        text-align: center;
+      }
+
+      .row {
+        margin: 0px !important;
+        width: 100%;
+        display: inline-block;
+        padding-top: 35px;
+        padding-bottom: 35px;
+      }
+
+      a:link, a:visited {
+          background-color: #5BC0DE;
+          color: white;
+          padding: 14px 25px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+      }
+
+      a:hover, a:active {
+          background-color: #F7F7F7;
+      }
+
+      .even {
+        background-color: #5BC0DE;
+      }
+
+      .even h1, .even p, .even h2, .even h3 {
+        color: #FFFFFF;
+      }
+
+      .odd {
+        background-color: #FFFFFF;
+      }
+
+      .odd h1, .odd p {
+        color: "black";
+      }
+    </style>
+  </head>
+
+  <%= render "layouts/header" %>
+  <body>
+    <%= yield %>
+  </body>
+</html>
