@@ -18,21 +18,46 @@ StripeEvent.configure do |events|
       #using the source ID as the value for the source
       #parameter to complete the payment
 
+
+      require 'pry'
+      binding.pry
+      #look at the event object and find the source_id ===
+      source_id = event.source_id
+
+      #use the source_id to find the associated Order object:
+      order = Order.find_by(source_id: source_id)
+
       charge = Stripe::Charge.create({
         amount: 8000,
         currency: 'usd',
-        source: @@source_id
+        source: source_id
       })
+
+      order.charge_id = charge.id
+      order.save
+      ##order is successful, send email to customer
 
     end
 
     if event.type == 'source.failed'
       #A Source object failed to become chargeable
       # as your customer declined to authenticate the payment.
+
+=begin
+  1.find the Order object using the source_id
+  2.set the Order object's status field to 'failed', and save the object
+  3. send email to customer saying order failed because payment wasn't authenticated
+=end
     end
 
     if event.type == 'source.cancelled'
       #A Source object expired and cannot be used to create a charge.
+
+=begin
+  1.find the Order object using the source_id
+  2.set the Order object's status field to 'cancelled', and save the object
+  3. send email to customer saying order failed because you left the checkout flow early
+=end
     end
 
 #CHARGE EVENTS
@@ -48,6 +73,7 @@ StripeEvent.configure do |events|
 
     if event.type == 'charge.failed'
       #the charge has failed and the payment could not be completed
+      #send email and set the order to failed
     end
   end
 end

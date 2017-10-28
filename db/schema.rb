@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171028210746) do
+ActiveRecord::Schema.define(version: 20171028214242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20171028210746) do
     t.string "alipay_statement_descriptor"
     t.string "alipay_native_url"
     t.string "alipay_data_string"
+    t.integer "charge_id"
   end
 
 end
