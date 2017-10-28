@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024194157) do
+ActiveRecord::Schema.define(version: 20171028210746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,29 @@ ActiveRecord::Schema.define(version: 20171024194157) do
   create_table "bookings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "source_id"
+    t.integer "amount"
+    t.string "client_secret"
+    t.integer "created"
+    t.string "currency", default: "usd"
+    t.boolean "livemode"
+    t.string "owner_address"
+    t.string "owner_email"
+    t.string "owner_name"
+    t.string "owner_phone"
+    t.string "verified_address"
+    t.string "verified_email"
+    t.string "verified_name"
+    t.string "verified_phone"
+    t.string "status"
+    t.string "payment_type"
+    t.string "usage"
+    t.string "alipay_statement_descriptor"
+    t.string "alipay_native_url"
+    t.string "alipay_data_string"
   end
 
 end

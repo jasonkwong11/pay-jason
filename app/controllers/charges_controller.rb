@@ -1,4 +1,6 @@
 class ChargesController < ApplicationController
+#  skip_before_action :verify_authenticity_token, only: :events
+
   def new
   end
 
@@ -29,7 +31,7 @@ class ChargesController < ApplicationController
       amount: 8000,
       currency: 'usd',
       redirect: {
-        return_url: 'http://localhost:3000/confirmation'
+        return_url: 'http://localhost:3000/pending'
       }
     )
     #if customer autohrizes the payment, the source
@@ -37,6 +39,34 @@ class ChargesController < ApplicationController
     #it is ready to be used in a charge request
     # ... if customer declines, status will transition to failed
 
+    order_args = {
+      source_id: source[:id],
+      amount: source[:amount],
+      client_secret: source[:client_secret],
+      created: source[:created],
+      currency: source[:currency],
+      livemode: source[:livemode],
+      owner_address: source[:owner][:address],
+      owner_email: source[:owner][:email],
+      owner_name: source[:owner][:name],
+      owner_phone: source[:owner][:phone],
+      verified_address: source[:owner][:verified_address],
+      verified_email: source[:owner][:verified_email],
+      verified_name: source[:owner][:verified_name],
+      verified_phone: source[:owner][:verified_phone],
+      status: source[:status],
+      payment_type: source[:type],
+      usage: source[:usage],
+      alipay_statement_descriptor: source[:alipay][:statement_descriptor],
+      alipay_native_url: source[:alipay][:native_url],
+      alipay_data_string: source[:alipay][:data_string]
+    }
+
+    order = Order.find_or_create_by(order_args)
+
+    require 'pry'
+    binding.pry
+    
     redirect_to source[:redirect][:url]
   end
 
@@ -45,7 +75,15 @@ class ChargesController < ApplicationController
     #params: source, livemode, client_secret
     # you can include other params if you need
     params
-    require 'pry'
-    binding.pry
   end
+=begin
+  def events
+    event = Stripe::Event.retrieve(params[:id])
+    # do something with charge success event
+    render nothing: true, status: 201
+    rescue Stripe::APIConnectionError, Stripe::StripeError
+      render nothing: true, status: 400
+    end
+  end
+=end
 end

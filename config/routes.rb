@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   resources :charges
 
   get 'alipay', to: 'charges#alipay'
+  get 'pending', to: 'charges#pending'
   get 'confirmation', to: 'charges#confirmation'
+
+  mount StripeEvent::Engine, at: "/stripe-events"
 end
