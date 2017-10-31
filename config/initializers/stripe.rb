@@ -9,37 +9,36 @@ Stripe.api_key = Rails.configuration.stripe.secret_key
 #Stripe.api_key = "sk_test_Dvlw0GvmUfj9PcXQzHaCBi5m"
 # ^^this is a test api_key. make sure you use the commented out production one above when deploying
 
+
+StripeEvent.configure do |events|
+  events.subscribe 'source.chargeable' do |event|
+    puts "inside of source.chargeable event"
+    source_id = event.source_id
+
+    #use the source_id to find the associated Order object:
+    order = Order.find_by(source_id: source_id)
+
+    charge = Stripe::Charge.create({
+      amount: 8000,
+      currency: 'usd',
+      source: source_id
+    })
+
+    order.charge_id = charge.id
+    order.save
+  end
+
+  events.subscribe 'source.failed' do |event|
+    puts "inside of subscribed source.failed"
+  end
+
+  events.subscribe 'source.cancelled' do |event|
+    puts "inside of subscribed source.cancelled"
+  end
+end
+
 StripeEvent.configure do |events|
   events.all do |event|
-
-    StripeEvent.configure do |events|
-      events.subscribe 'source.chargeable' do |event|
-        puts "inside of source.chargeable event"
-        source_id = event.source_id
-
-        #use the source_id to find the associated Order object:
-        order = Order.find_by(source_id: source_id)
-
-        charge = Stripe::Charge.create({
-          amount: 8000,
-          currency: 'usd',
-          source: source_id
-        })
-
-        order.charge_id = charge.id
-        order.save
-
-      end
-
-      events.subscribe 'source.failed' do |event|
-        puts "inside of subscribed source.failed"
-      end
-
-      events.subscribe 'source.cancelled' do |event|
-        puts "inside of subscribed source.cancelled"
-      end
-    end
-
     if event.type == 'source.chargeable'
       #once the source is chargeable, from your webhook
       #handler (here), you can make a charge request
