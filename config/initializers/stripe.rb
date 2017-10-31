@@ -5,8 +5,8 @@ Rails.configuration.stripe do |config|
 
 end
 
-#Stripe.api_key = Rails.configuration.stripe.secret_key
-Stripe.api_key = "sk_test_Dvlw0GvmUfj9PcXQzHaCBi5m"
+Stripe.api_key = Rails.configuration.stripe.secret_key
+#Stripe.api_key = "sk_test_Dvlw0GvmUfj9PcXQzHaCBi5m"
 # ^^this is a test api_key. make sure you use the commented out production one above when deploying
 
 StripeEvent.configure do |events|

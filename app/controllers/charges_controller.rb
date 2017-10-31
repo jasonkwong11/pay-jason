@@ -31,7 +31,7 @@ class ChargesController < ApplicationController
       amount: 8000,
       currency: 'usd',
       redirect: {
-        return_url: 'http://localhost:3000/pending'
+        return_url: 'https://pay-jason.herokuapp.com/pending'
       }
     )
     #if customer autohrizes the payment, the source
@@ -67,7 +67,7 @@ class ChargesController < ApplicationController
     redirect_to source[:redirect][:url]
   end
 
-  def confirmation
+  def pending
     #here the get request is returned with these
     #params: source, livemode, client_secret
     # you can include other params if you need
