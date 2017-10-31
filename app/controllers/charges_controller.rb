@@ -72,6 +72,7 @@ class ChargesController < ApplicationController
     #params: source, livemode, client_secret
     # you can include other params if you need
     params
+    render status: 200
   end
 =begin
   def events
