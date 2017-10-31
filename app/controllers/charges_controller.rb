@@ -31,7 +31,7 @@ class ChargesController < ApplicationController
       amount: 8000,
       currency: 'usd',
       redirect: {
-        return_url: 'https://pay-jason.herokuapp.com/pending'
+        return_url: 'https://eleveneducation.herokuapp.com/pending'
       }
     )
     #if customer autohrizes the payment, the source
