@@ -12,6 +12,34 @@ Stripe.api_key = Rails.configuration.stripe.secret_key
 StripeEvent.configure do |events|
   events.all do |event|
 
+    StripeEvent.configure do |events|
+      events.subscribe 'source.chargeable' do |event|
+        puts "inside of source.chargeable event"
+        source_id = event.source_id
+
+        #use the source_id to find the associated Order object:
+        order = Order.find_by(source_id: source_id)
+
+        charge = Stripe::Charge.create({
+          amount: 8000,
+          currency: 'usd',
+          source: source_id
+        })
+
+        order.charge_id = charge.id
+        order.save
+
+      end
+
+      events.subscribe 'source.failed' do |event|
+        puts "inside of subscribed source.failed"
+      end
+
+      events.subscribe 'source.cancelled' do |event|
+        puts "inside of subscribed source.cancelled"
+      end
+    end
+
     if event.type == 'source.chargeable'
       #once the source is chargeable, from your webhook
       #handler (here), you can make a charge request
@@ -36,6 +64,7 @@ StripeEvent.configure do |events|
     end
 
     if event.type == 'source.failed'
+      puts "inside of source.failed event"
       #A Source object failed to become chargeable
       # as your customer declined to authenticate the payment.
 
@@ -47,6 +76,7 @@ StripeEvent.configure do |events|
     end
 
     if event.type == 'source.cancelled'
+      puts 'inside of source.cancelled event'
       #A Source object expired and cannot be used to create a charge.
 
 =begin

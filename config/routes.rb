@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   get 'pending', to: 'charges#pending'
   get 'confirmation', to: 'charges#confirmation'
 
-  mount StripeEvent::Engine, at: "/stripe-events"
+  mount StripeEvent::Engine, at: '/stripe-events'
+
 end
