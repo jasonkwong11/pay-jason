@@ -17,10 +17,6 @@ StripeEvent.configure do |events|
       #handler (here), you can make a charge request
       #using the source ID as the value for the source
       #parameter to complete the payment
-
-
-      require 'pry'
-      binding.pry
       #look at the event object and find the source_id ===
       source_id = event.source_id
 

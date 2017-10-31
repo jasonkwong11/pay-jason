@@ -64,9 +64,6 @@ class ChargesController < ApplicationController
 
     order = Order.find_or_create_by(order_args)
 
-    require 'pry'
-    binding.pry
-    
     redirect_to source[:redirect][:url]
   end
 
