@@ -28,7 +28,7 @@ class ChargesController < ApplicationController
   def alipay
     source = Stripe::Source.create(
       type: "alipay",
-      amount: 8000,
+      amount: 500,
       currency: 'usd',
       redirect: {
         return_url: 'https://eleveneducation.herokuapp.com/pending'
