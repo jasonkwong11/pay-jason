@@ -11,7 +11,7 @@ module PayJason
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
-    config.stripe.publishable_key = "pk_test_yttpe3MBKzBbISq3m3ziVBkh"
+    config.stripe.publishable_key = "pk_live_9xFRTY0sZJFyv6pBJfmkUXpw"
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

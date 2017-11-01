@@ -64,7 +64,7 @@ class ChargesController < ApplicationController
 
     order = Order.find_or_create_by(order_args)
 
-    redirect_to source[:redirect][:url], status: 200
+    redirect_to source[:redirect][:url]
   end
 
   def pending
