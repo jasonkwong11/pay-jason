@@ -17,8 +17,13 @@
     </div>
   </div>
 
-  <%= link_to "Pay $80 with Credit Card", "/charges/new" %>
+    <a href="/charges/new" style="background-color: #FFFFFF; color: #5BC0DE;">Pay $80 with Credit Card<br>
+      <%= image_tag('credit-card-logos.png', alt: 'credit-card', size: "80x80")%>
+    </a>
 
-    <%= link_to "Pay $80 with Alipay", "/alipay" %>
+    <a href="/alipay" style="background-color: #FFFFFF; color: #5BC0DE;">Pay $80 with Alipay<br>
+      <%= image_tag('alipay-logo.png', alt: 'alipay', size: "80x80") %>
+    </a>
+
 </body>
 <%= stripe_javascript_tag %>

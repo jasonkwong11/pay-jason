@@ -18,7 +18,7 @@ StripeEvent.configure do |events|
     order = Order.find_by(source_id: source_id)
 
     charge = Stripe::Charge.create({
-      amount: 500,
+      amount: 8000,
       currency: 'usd',
       source: source_id
     })

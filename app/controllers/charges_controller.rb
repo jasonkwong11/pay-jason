@@ -6,7 +6,7 @@ class ChargesController < ApplicationController
 
   def create
     # Amount in cents
-    @amount = 500
+    @amount = 8000
 
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
@@ -16,7 +16,7 @@ class ChargesController < ApplicationController
     charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @amount,
-      :description => 'Rails Stripe customer',
+      :description => 'Eleven Education customer',
       :currency    => 'usd'
     )
 
@@ -28,7 +28,7 @@ class ChargesController < ApplicationController
   def alipay
     source = Stripe::Source.create(
       type: "alipay",
-      amount: 500,
+      amount: 8000,
       currency: 'usd',
       redirect: {
         return_url: 'https://eleveneducation.herokuapp.com/pending'

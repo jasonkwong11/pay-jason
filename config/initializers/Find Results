@@ -1,0 +1,300 @@
+Searching 363 files for "test"
+
+/Users/jasonkwong/developer/pay-jason/.env:
+    1: STRIPE_PUBLISHABLE_KEY = "pk_test_yttpe3MBKzBbISq3m3ziVBkh"
+    2  
+    3: STRIPE_SECRET_KEY = "sk_test_Dvlw0GvmUfj9PcXQzHaCBi5m"
+
+/Users/jasonkwong/developer/pay-jason/Gemfile:
+    7  
+    8  
+    9: gem 'dotenv-rails', groups: [:development, :test]
+   10  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+   11  gem 'rails', '~> 5.1.4'
+   ..
+   40  # gem 'capistrano-rails', group: :development
+   41  
+   42: group :development, :test do
+   43    # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+   44    gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+   45:   # Adds support for Capybara system testing and selenium driver
+   46    gem 'capybara', '~> 2.13'
+   47    gem 'selenium-webdriver'
+
+/Users/jasonkwong/developer/pay-jason/Gemfile.lock:
+   11        activejob (= 5.1.4)
+   12        mail (~> 2.5, >= 2.5.4)
+   13:       rails-dom-testing (~> 2.0)
+   14      actionpack (5.1.4)
+   15        actionview (= 5.1.4)
+   16        activesupport (= 5.1.4)
+   17        rack (~> 2.0)
+   18:       rack-test (>= 0.6.3)
+   19:       rails-dom-testing (~> 2.0)
+   20        rails-html-sanitizer (~> 1.0, >= 1.0.2)
+   21      actionview (5.1.4)
+   ..
+   23        builder (~> 3.1)
+   24        erubi (~> 1.4)
+   25:       rails-dom-testing (~> 2.0)
+   26        rails-html-sanitizer (~> 1.0, >= 1.0.3)
+   27      activejob (5.1.4)
+   ..
+   37        concurrent-ruby (~> 1.0, >= 1.0.2)
+   38        i18n (~> 0.7)
+   39:       minitest (~> 5.1)
+   40        tzinfo (~> 1.1)
+   41      addressable (2.5.2)
+   ..
+   52        nokogiri (>= 1.3.3)
+   53        rack (>= 1.0.0)
+   54:       rack-test (>= 0.5.4)
+   55        xpath (~> 2.0)
+   56      childprocess (0.8.0)
+   ..
+   97      mini_mime (0.1.4)
+   98      mini_portile2 (2.3.0)
+   99:     minitest (5.10.3)
+  100      multi_json (1.12.2)
+  101      multipart-post (2.0.0)
+  ...
+  110      puma (3.10.0)
+  111      rack (2.0.3)
+  112:     rack-test (0.7.0)
+  113        rack (>= 1.0, < 3)
+  114      rails (5.1.4)
+  ...
+  124        railties (= 5.1.4)
+  125        sprockets-rails (>= 2.0.0)
+  126:     rails-dom-testing (2.0.3)
+  127        activesupport (>= 4.2.0)
+  128        nokogiri (>= 1.6)
+
+/Users/jasonkwong/developer/pay-jason/README.md:
+   16  * Database initialization
+   17  
+   18: * How to run the test suite
+   19  
+   20  * Services (job queues, cache servers, search engines, etc.)
+
+/Users/jasonkwong/developer/pay-jason/config/application.rb:
+    3  require 'rails/all'
+    4  
+    5: require 'dotenv/load' if (ENV['RUBY_ENV'] == "development" || ENV['RUBY_ENV'] == "test")
+    6  # Require the gems listed in Gemfile, including any gems
+    7: # you've limited to :test, :development, or :production.
+    8  Bundler.require(*Rails.groups)
+    9  
+   ..
+   12      # Initialize configuration defaults for originally generated Rails version.
+   13      config.load_defaults 5.1
+   14:     config.stripe.publishable_key = "pk_test_yttpe3MBKzBbISq3m3ziVBkh"
+   15  
+   16      # Settings in config/environments/* take precedence over those specified here.
+
+/Users/jasonkwong/developer/pay-jason/config/cable.yml:
+    2    adapter: async
+    3  
+    4: test:
+    5    adapter: async
+    6  
+
+/Users/jasonkwong/developer/pay-jason/config/database.yml:
+   14    database: pay_jason_development
+   15  
+   16: # Warning: The database defined as "test" will be erased and
+   17  # re-generated from your development database when you run "rake".
+   18  # Do not set this db to the same as development or production.
+   19: test:
+   20    <<: *default
+   21:   database: pay_jason_test
+   22  
+   23  production:
+
+/Users/jasonkwong/developer/pay-jason/config/secrets.yml:
+   21    secret_key_base: 88ac992b7f12a6afe897cd7c57b287e13a161bd94c6fe3e3f430c338bd24de9bef1d602bcd00c149e61a481447a8ece77746071da2fa6eec2a09f027127b878c
+   22  
+   23: test:
+   24    secret_key_base: 2e0bdf6fe7dbfb595f4bc88643c7ae71dec42c33ecf77fa9b5b30d80e82627b8bc0d5ea776008f4115b20608858fc660796163e4aaa98ad014a5c62ec88b7746
+   25  
+
+/Users/jasonkwong/developer/pay-jason/config/environments/test.rb:
+    2    # Settings specified here will take precedence over those in config/application.rb.
+    3  
+    4:   # The test environment is used exclusively to run your application's
+    5:   # test suite. You never need to work with it otherwise. Remember that
+    6:   # your test database is "scratch space" for the test suite and is wiped
+    7:   # and recreated between test runs. Don't rely on the data there!
+    8    config.cache_classes = true
+    9  
+   10    # Do not eager load code on boot. This avoids loading your whole application
+   11:   # just for the purpose of running a single test. If you are using a tool that
+   12:   # preloads Rails for running tests, you may have to set it to true.
+   13    config.eager_load = false
+   14  
+   15:   # Configure public file server for tests with Cache-Control for performance.
+   16    config.public_file_server.enabled = true
+   17    config.public_file_server.headers = {
+   ..
+   26    config.action_dispatch.show_exceptions = false
+   27  
+   28:   # Disable request forgery protection in test environment.
+   29    config.action_controller.allow_forgery_protection = false
+   30    config.action_mailer.perform_caching = false
+   31  
+   32    # Tell Action Mailer not to deliver emails to the real world.
+   33:   # The :test delivery method accumulates sent emails in the
+   34    # ActionMailer::Base.deliveries array.
+   35:   config.action_mailer.delivery_method = :test
+   36  
+   37    # Print deprecation notices to the stderr.
+
+/Users/jasonkwong/developer/pay-jason/config/initializers/stripe.rb:
+    7  
+    8  Stripe.api_key = Rails.configuration.stripe.secret_key
+    9: #Stripe.api_key = "sk_test_Dvlw0GvmUfj9PcXQzHaCBi5m"
+   10: # ^^this is a test api_key. make sure you use the commented out production one above when deploying
+   11  
+   12  StripeEvent.configure do |events|
+
+/Users/jasonkwong/developer/pay-jason/config/stripe/plans.rb:
+   27  Stripe.plan :eighty do |plan|
+   28    plan.name = 'Pay Jason $80 a month'
+   29:   plan.amount = 50 # $.50 test amount
+   30    plan.interval = 'month'
+   31  end
+
+/Users/jasonkwong/developer/pay-jason/log/development.log:
+    <binary>
+
+/Users/jasonkwong/developer/pay-jason/test/application_system_test_case.rb:
+    1: require "test_helper"
+    2  
+    3: class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+    4    driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+    5  end
+
+/Users/jasonkwong/developer/pay-jason/test/test_helper.rb:
+    1  require File.expand_path('../../config/environment', __FILE__)
+    2: require 'rails/test_help'
+    3  
+    4: class ActiveSupport::TestCase
+    5:   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
+    6    fixtures :all
+    7  
+    8:   # Add more helper methods to be used by all tests here...
+    9  end
+   10  
+
+/Users/jasonkwong/developer/pay-jason/test/controllers/booking_controller_test.rb:
+    1: require 'test_helper'
+    2  
+    3: class BookingControllerTest < ActionDispatch::IntegrationTest
+    4:   # test "the truth" do
+    5    #   assert true
+    6    # end
+
+/Users/jasonkwong/developer/pay-jason/test/controllers/charges_controller_test.rb:
+    1: require 'test_helper'
+    2  
+    3: class ChargesControllerTest < ActionDispatch::IntegrationTest
+    4:   # test "the truth" do
+    5    #   assert true
+    6    # end
+
+/Users/jasonkwong/developer/pay-jason/test/models/booking_test.rb:
+    1: require 'test_helper'
+    2  
+    3: class BookingTest < ActiveSupport::TestCase
+    4:   # test "the truth" do
+    5    #   assert true
+    6    # end
+
+58 matches across 17 files
+
+
+Searching 362 files for "rails stripe "
+
+/Users/jasonkwong/developer/pay-jason/app/controllers/charges_controller.rb:
+   17        :customer    => customer.id,
+   18        :amount      => @amount,
+   19:       :description => 'Rails Stripe customer',
+   20        :currency    => 'usd'
+   21      )
+
+1 match in 1 file
+
+
+Searching 389 files for "500"
+
+/Users/jasonkwong/developer/pay-jason/config/database.yml:
+    8    adapter: postgresql
+    9    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+   10:   timeout: 5000
+   11  
+   12  development:
+
+/Users/jasonkwong/developer/pay-jason/config/initializers/stripe.rb:
+   19  
+   20      charge = Stripe::Charge.create({
+   21:       amount: 500,
+   22        currency: 'usd',
+   23        source: source_id
+
+/Users/jasonkwong/developer/pay-jason/log/development.log:
+    <binary>
+
+/Users/jasonkwong/developer/pay-jason/public/500.html:
+    2  <html>
+    3  <head>
+    4:   <title>We're sorry, but something went wrong (500)</title>
+    5    <meta name="viewport" content="width=device-width,initial-scale=1">
+    6    <style>
+    .
+   56  
+   57  <body class="rails-default-error-page">
+   58:   <!-- This file lives in public/500.html -->
+   59    <div class="dialog">
+   60      <div>
+
+/Users/jasonkwong/developer/pay-jason/tmp/cache/assets/sprockets/v3.0/_L/_lWSTfw8q_8LY4UdtS5VfghiQcxEft4z9qejivZ1cb4.cache:
+    <binary>
+
+/Users/jasonkwong/developer/pay-jason/tmp/cache/assets/sprockets/v3.0/Bz/BZXRxhCStlFq41Ou0mudmk-ryYeoxBNJ7VfzZSVuicY.cache:
+    <binary>
+
+30 matches across 6 files
+
+
+Searching 389 files for "500"
+
+/Users/jasonkwong/developer/pay-jason/config/database.yml:
+    8    adapter: postgresql
+    9    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+   10:   timeout: 5000
+   11  
+   12  development:
+
+/Users/jasonkwong/developer/pay-jason/log/development.log:
+    <binary>
+
+/Users/jasonkwong/developer/pay-jason/public/500.html:
+    2  <html>
+    3  <head>
+    4:   <title>We're sorry, but something went wrong (500)</title>
+    5    <meta name="viewport" content="width=device-width,initial-scale=1">
+    6    <style>
+    .
+   56  
+   57  <body class="rails-default-error-page">
+   58:   <!-- This file lives in public/500.html -->
+   59    <div class="dialog">
+   60      <div>
+
+/Users/jasonkwong/developer/pay-jason/tmp/cache/assets/sprockets/v3.0/_L/_lWSTfw8q_8LY4UdtS5VfghiQcxEft4z9qejivZ1cb4.cache:
+    <binary>
+
+/Users/jasonkwong/developer/pay-jason/tmp/cache/assets/sprockets/v3.0/Bz/BZXRxhCStlFq41Ou0mudmk-ryYeoxBNJ7VfzZSVuicY.cache:
+    <binary>
+
+29 matches across 5 files
