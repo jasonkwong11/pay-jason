@@ -5,4 +5,7 @@ class BookingController < ApplicationController
 
   def new
   end
+
+  def about
+  end
 end
