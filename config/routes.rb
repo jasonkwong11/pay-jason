@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'confirmation', to: 'charges#confirmation'
 
   get 'about', to: 'booking#about'
+  get 'free', to: 'booking#free'
 
   mount StripeEvent::Engine, at: '/stripe-events'
 

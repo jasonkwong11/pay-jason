@@ -8,4 +8,7 @@ class BookingController < ApplicationController
 
   def about
   end
+
+  def free
+  end
 end
