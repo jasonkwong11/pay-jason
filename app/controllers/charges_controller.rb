@@ -74,6 +74,44 @@ class ChargesController < ApplicationController
     params
     render status: 200
   end
+
+  def webhook
+
+    begin
+      event_json = JSON.parse(request.body.read)
+      event_object = event_json['data']['object']
+    #refer event types here https://stripe.com/docs/api#event_types
+    case event_json['type']
+      when 'source.chargeable'
+        puts "inside of source.chargeable event"
+        source_id = event_json['source_id']
+        #use the source_id to find the associated Order object:
+        order = Order.find_by(source_id: source_id)
+
+        charge = Stripe::Charge.create({
+          amount: 8000,
+          currency: 'usd',
+          source: source_id
+        })
+
+        order.charge_id = charge.id
+        order.save
+        redirect_to '/yay'
+      when 'source.failed'
+        redirect_to '/failed'
+      when 'source.cancelled'
+        redirect_to '/cancelled'
+      when 'charge.succeeded'
+        redirect_to '/confirmation'
+      when 'charge.failed'
+        redirect_to '/failed'
+    end
+    rescue Exception => ex
+      render :json => {:status => 422, :error => "Webhook call failed"}
+      return
+    end
+    render :json => {:status => 200}
+  end
 =begin
   def events
     event = Stripe::Event.retrieve(params[:id])

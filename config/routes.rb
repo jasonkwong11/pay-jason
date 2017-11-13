@@ -12,6 +12,12 @@ Rails.application.routes.draw do
   get 'about', to: 'booking#about'
   get 'free', to: 'booking#free'
 
-  mount StripeEvent::Engine, at: '/stripe-events'
+  post 'stripe-events', to: 'charges#webhook'
+
+  get 'failed', to: 'charges#failed'
+  get 'cancelled', to: 'charges#cancelled'
+  get 'yay', to: 'charges#yay'
+
+ # mount StripeEvent::Engine, at: '/stripe-events'
 
 end

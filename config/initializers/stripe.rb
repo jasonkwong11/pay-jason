@@ -12,6 +12,7 @@ Stripe.api_key = Rails.configuration.stripe.secret_key
 StripeEvent.configure do |events|
   events.subscribe 'source.chargeable' do |event|
     puts "inside of source.chargeable event"
+
     source_id = event.source_id
 
     #use the source_id to find the associated Order object:
