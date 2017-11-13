@@ -96,7 +96,7 @@ class ChargesController < ApplicationController
 
         order.charge_id = charge.id
         order.save
-        redirect_to '/yay'
+        redirect_to '/confirmation'
       when 'source.failed'
         redirect_to '/failed'
       when 'source.cancelled'
