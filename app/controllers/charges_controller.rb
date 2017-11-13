@@ -95,8 +95,6 @@ class ChargesController < ApplicationController
 
         order.charge_id = charge['id']
         order.save
-        redirect_to '/confirmation'
-        return
       when 'source.failed'
         redirect_to '/failed'
         return
@@ -114,6 +112,8 @@ class ChargesController < ApplicationController
       render :json => {:status => 422, :error => "Webhook call failed"}
       return
     end
+    status 200
+    render "confirmation"
   end
 =begin
   def events
