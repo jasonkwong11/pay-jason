@@ -84,17 +84,16 @@ class ChargesController < ApplicationController
     case event_json['type']
       when 'source.chargeable'
         puts "inside of source.chargeable event"
-        source_id = event_json['source_id']
+        source_id = event_json["data"]["object"]["id"]
         #use the source_id to find the associated Order object:
         order = Order.find_by(source_id: source_id)
-
         charge = Stripe::Charge.create({
           amount: 8000,
           currency: 'usd',
           source: source_id
         })
 
-        order.charge_id = charge.id
+        order.charge_id = charge['id']
         order.save
         redirect_to '/confirmation'
       when 'source.failed'
